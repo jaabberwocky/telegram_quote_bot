@@ -1,6 +1,6 @@
 # Telegram Bot to generate quotes
 
-Learning project for me to better understand how the Telegram bot API works.
+Learning project for me to better understand how the Telegram bot API works. Scrapes the `BrainyQuote.com` site and grabs a random quote and returns it to the user.
 
 ## How to install
 1. Get a bot token by talking to @BotFather
