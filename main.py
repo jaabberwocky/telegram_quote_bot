@@ -26,7 +26,7 @@ def start(update, context):
     )
 
 def echo(update, context):
-    context.bot.send_message(chat_id = update.effective_chat.id, text="I didn't understand that but my creator loves you! <3")
+    context.bot.send_message(chat_id = update.effective_chat.id, text="I didn't understand that but my creator loves you!")
 
 def whatTime(update, context):
     now = datetime.now().time().strftime("%H:%M:%S")
