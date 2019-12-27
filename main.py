@@ -6,7 +6,7 @@ from getQuotes import GetQuote
 
 cfg = configparser.ConfigParser()
 cfg.read('config.cfg')
-TOKEN = cfg['DEFAULT']['token']
+TOKEN = cfg['DEFAULT']['token'] # insert your bot token here
 
 print("logging...")
 logging.basicConfig(
