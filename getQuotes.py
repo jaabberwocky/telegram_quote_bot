@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from random import randrange
 
-def GetQuote():
+def getQuote():
     url = 'https://www.brainyquote.com/topics/random-quotes'
    
     r = requests.get(url)

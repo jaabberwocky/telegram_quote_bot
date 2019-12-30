@@ -2,7 +2,7 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import configparser
 import logging
 from datetime import datetime
-from getQuotes import GetQuote
+from getQuotes import getQuote
 
 cfg = configparser.ConfigParser()
 cfg.read('config.cfg')
@@ -18,7 +18,10 @@ print("starting bot...")
 updater = Updater(token=TOKEN, use_context=True)
 dispatcher = updater.dispatcher
 
-# functionality
+# callback functions
+
+## common message
+MSG = "Say '/time' for time or '/quote' to get a quote!"
 def start(update, context):
     context.bot.send_message(
         chat_id = update.effective_chat.id, 
@@ -27,6 +30,10 @@ def start(update, context):
 
 def echo(update, context):
     context.bot.send_message(chat_id = update.effective_chat.id, text="I didn't understand that but my creator loves you!")
+    context.bot.send_message(
+        chat_id = update.effective_chat.id,
+        text="The time now is: {}".format(now)
+    )
 
 def whatTime(update, context):
     now = datetime.now().time().strftime("%H:%M:%S")
@@ -34,12 +41,20 @@ def whatTime(update, context):
         chat_id = update.effective_chat.id,
         text="The time now is: {}".format(now)
     )
+    context.bot.send_message(
+        chat_id = update.effective_chat.id,
+        text=MSG
+    )
 
 def sayQuote(update, context):
-    msg = GetQuote()
+    msg = getQuote()
     context.bot.send_message(
         chat_id = update.effective_chat.id,
         text=msg
+    )
+    context.bot.send_messagge(
+        chat_id = update.effective_chat.id,
+        text=MSG
     )
 
 # handlers
