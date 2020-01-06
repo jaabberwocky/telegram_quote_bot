@@ -3,7 +3,13 @@ import configparser
 import logging
 from datetime import datetime
 import pytz
-from getStuff import getQuote
+from telegramScrapper import Scrapper
+
+logging.basicConfig(
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    level = logging.INFO,
+    filename='telegram_bot.log'
+)
 
 logging.debug('Reading credentials and loading bot...')
 cfg = configparser.ConfigParser()
@@ -11,11 +17,7 @@ cfg.read('config.cfg')
 TOKEN = cfg['DEFAULT']['token'] # insert your bot token here
 logging.info('Credentials established.')
 
-logging.basicConfig(
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    level = logging.INFO,
-    filename='telegram_bot.log'
-)
+
 logging.info('Log file established.')
 
 logging.info('Starting bot.')
@@ -23,6 +25,7 @@ updater = Updater(token=TOKEN, use_context=True)
 dispatcher = updater.dispatcher
 
 singapore = pytz.timezone('Asia/Singapore')
+scrapper = Scrapper()
 
 # callback functions
 
@@ -57,7 +60,7 @@ def whatTime(update, context):
     )
 
 def sayQuote(update, context):
-    msg = getQuote()
+    msg = scrapper.getQuote()
     context.bot.send_message(
         chat_id = update.effective_chat.id,
         text=msg

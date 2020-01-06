@@ -2,7 +2,6 @@ import requests
 from bs4 import BeautifulSoup
 from random import randrange
 
-
 class Scrapper:
     def __init__(self):
         pass
